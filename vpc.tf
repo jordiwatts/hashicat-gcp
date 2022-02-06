@@ -13,3 +13,19 @@ module "vpc" {
   }
  ]
 }
+
+module "network" {
+  source  = "app.terraform.io/jordiwatts-cdw/network/google"
+  version = "3.4.0"
+
+  project_id   = var.project
+  network_name = "jordi-network"
+
+  subnets = [
+  {
+    subnet_name   = "jordi-subnet"
+    subnet_ip     = "10.100.20.0/24"
+    subnet_region = var.region
+  }
+ ]
+}
